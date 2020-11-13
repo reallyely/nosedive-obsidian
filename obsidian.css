@@ -1,4 +1,6 @@
 :root {
+  --grip-horizontal-svg: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMWVtIiBoZWlnaHQ9IjFlbSIgdmlld0JveD0iMCAwIDE2IDE2IiBjbGFzcz0iYmkgYmktZ3JpcC1ob3Jpem9udGFsIiBmaWxsPSJjdXJyZW50Q29sb3IiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPHBhdGggZD0iTTIgOGExIDEgMCAxIDEgMCAyIDEgMSAwIDAgMSAwLTJ6bTAtM2ExIDEgMCAxIDEgMCAyIDEgMSAwIDAgMSAwLTJ6bTMgM2ExIDEgMCAxIDEgMCAyIDEgMSAwIDAgMSAwLTJ6bTAtM2ExIDEgMCAxIDEgMCAyIDEgMSAwIDAgMSAwLTJ6bTMgM2ExIDEgMCAxIDEgMCAyIDEgMSAwIDAgMSAwLTJ6bTAtM2ExIDEgMCAxIDEgMCAyIDEgMSAwIDAgMSAwLTJ6bTMgM2ExIDEgMCAxIDEgMCAyIDEgMSAwIDAgMSAwLTJ6bTAtM2ExIDEgMCAxIDEgMCAyIDEgMSAwIDAgMSAwLTJ6bTMgM2ExIDEgMCAxIDEgMCAyIDEgMSAwIDAgMSAwLTJ6bTAtM2ExIDEgMCAxIDEgMCAyIDEgMSAwIDAgMSAwLTJ6Ii8+Cjwvc3ZnPg==");
+  --grip-vertical-svg: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMWVtIiBoZWlnaHQ9IjFlbSIgdmlld0JveD0iMCAwIDE2IDE2IiBjbGFzcz0iYmkgYmktZ3JpcC12ZXJ0aWNhbCIgZmlsbD0iY3VycmVudENvbG9yIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxwYXRoIGQ9Ik03IDJhMSAxIDAgMSAxLTIgMCAxIDEgMCAwIDEgMiAwem0zIDBhMSAxIDAgMSAxLTIgMCAxIDEgMCAwIDEgMiAwek03IDVhMSAxIDAgMSAxLTIgMCAxIDEgMCAwIDEgMiAwem0zIDBhMSAxIDAgMSAxLTIgMCAxIDEgMCAwIDEgMiAwek03IDhhMSAxIDAgMSAxLTIgMCAxIDEgMCAwIDEgMiAwem0zIDBhMSAxIDAgMSAxLTIgMCAxIDEgMCAwIDEgMiAwem0tMyAzYTEgMSAwIDEgMS0yIDAgMSAxIDAgMCAxIDIgMHptMyAwYTEgMSAwIDEgMS0yIDAgMSAxIDAgMCAxIDIgMHptLTMgM2ExIDEgMCAxIDEtMiAwIDEgMSAwIDAgMSAyIDB6bTMgMGExIDEgMCAxIDEtMiAwIDEgMSAwIDAgMSAyIDB6Ii8+Cjwvc3ZnPg==");
   --font-small: 18px;
   --font-medium: 21px;
 
@@ -326,6 +328,25 @@ input[type="checkbox"]::before {
     color: var(--text-muted);
 }
 
+/* Bullet relationship lines */
+.cm-hmd-list-indent .cm-tab, ul ul { position: relative; }
+.cm-hmd-list-indent .cm-tab::before, ul ul::before {
+  content:'';
+  border-left: 1px solid var(--text-faint);
+  position: absolute;
+}
+
+.cm-hmd-list-indent .cm-tab::before {
+  left: 0;
+  top: -5px;
+  bottom: -4px;
+}
+
+ul ul::before {
+  left: -0.9em;
+  top: 0;
+  bottom: 0;
+}
 .markdown-preview-section ul {
   padding-left: 30px;
 }
@@ -521,6 +542,7 @@ nav-folder-title-content:hover {
   /* padding-bottom: 3px; */
   background-color: transparent;
   color: var(--blue);
+  padding-left: -15px;
 }
 
 .suggestion-item.is-selected::before,
@@ -528,10 +550,6 @@ nav-folder-title-content:hover {
 .nav-file-title-content:hover::before,
 nav-folder-title-content:hover::before{
   color: var(--blue);
-  font-family: "Material Icons Round";
-  content: "\e5cc";
-  position: absolute;
-  left: -0.15em;
 }
 
 .workspace-split.mod-horizontal > * > .workspace-leaf-resize-handle {
