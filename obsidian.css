@@ -234,7 +234,7 @@ h6 {
   font-weight: 300;
 }
 
-/* .markdown-preview-view h1,.cm-header.cm-header-1 {
+.markdown-preview-view h1,.cm-header.cm-header-1 {
   font-size: 2.5em;
 }
 
@@ -248,7 +248,7 @@ h6 {
 
 .markdown-preview-view h4, .cm-header.cm-header-4 {
   font-size: 1.3em;
-} */
+}
 
 .cm-s-obsidian .cm-header {
   font-weight: 300;
