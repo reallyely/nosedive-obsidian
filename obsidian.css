@@ -1,6 +1,4 @@
 :root {
-  --grip-horizontal-svg: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMWVtIiBoZWlnaHQ9IjFlbSIgdmlld0JveD0iMCAwIDE2IDE2IiBjbGFzcz0iYmkgYmktZ3JpcC1ob3Jpem9udGFsIiBmaWxsPSJjdXJyZW50Q29sb3IiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPHBhdGggZD0iTTIgOGExIDEgMCAxIDEgMCAyIDEgMSAwIDAgMSAwLTJ6bTAtM2ExIDEgMCAxIDEgMCAyIDEgMSAwIDAgMSAwLTJ6bTMgM2ExIDEgMCAxIDEgMCAyIDEgMSAwIDAgMSAwLTJ6bTAtM2ExIDEgMCAxIDEgMCAyIDEgMSAwIDAgMSAwLTJ6bTMgM2ExIDEgMCAxIDEgMCAyIDEgMSAwIDAgMSAwLTJ6bTAtM2ExIDEgMCAxIDEgMCAyIDEgMSAwIDAgMSAwLTJ6bTMgM2ExIDEgMCAxIDEgMCAyIDEgMSAwIDAgMSAwLTJ6bTAtM2ExIDEgMCAxIDEgMCAyIDEgMSAwIDAgMSAwLTJ6bTMgM2ExIDEgMCAxIDEgMCAyIDEgMSAwIDAgMSAwLTJ6bTAtM2ExIDEgMCAxIDEgMCAyIDEgMSAwIDAgMSAwLTJ6Ii8+Cjwvc3ZnPg==");
-  --grip-vertical-svg: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMWVtIiBoZWlnaHQ9IjFlbSIgdmlld0JveD0iMCAwIDE2IDE2IiBjbGFzcz0iYmkgYmktZ3JpcC12ZXJ0aWNhbCIgZmlsbD0iY3VycmVudENvbG9yIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxwYXRoIGQ9Ik03IDJhMSAxIDAgMSAxLTIgMCAxIDEgMCAwIDEgMiAwem0zIDBhMSAxIDAgMSAxLTIgMCAxIDEgMCAwIDEgMiAwek03IDVhMSAxIDAgMSAxLTIgMCAxIDEgMCAwIDEgMiAwem0zIDBhMSAxIDAgMSAxLTIgMCAxIDEgMCAwIDEgMiAwek03IDhhMSAxIDAgMSAxLTIgMCAxIDEgMCAwIDEgMiAwem0zIDBhMSAxIDAgMSAxLTIgMCAxIDEgMCAwIDEgMiAwem0tMyAzYTEgMSAwIDEgMS0yIDAgMSAxIDAgMCAxIDIgMHptMyAwYTEgMSAwIDEgMS0yIDAgMSAxIDAgMCAxIDIgMHptLTMgM2ExIDEgMCAxIDEtMiAwIDEgMSAwIDAgMSAyIDB6bTMgMGExIDEgMCAxIDEtMiAwIDEgMSAwIDAgMSAyIDB6Ii8+Cjwvc3ZnPg==");
   --font-small: 18px;
   --font-medium: 21px;
 
@@ -81,12 +79,12 @@
   --interactive-accent: var(--red);
   --interactive-accent-rgb: 190, 70, 83;
   --interactive-accent-hover: var(--blue);
-  --text-on-accent: var(--text-selection);
+  --text-on-accent: var(--text-normal);
 
   --scrollbar-active-thumb-bg: rgba(0, 0, 0, 0.1);
   --scrollbar-bg: rgba(0, 0, 0, 0);
   --scrollbar-thumb-bg: rgba(0, 0, 0, 0.08);
-  /* text-shadow: 0px 0px 3px var(--text-faint); */
+  /* text-shadow: 0px 0px 24px var(--text-faint); */
 
 }
 /* overall app background should appear translucent */
@@ -146,12 +144,28 @@ kbd.suggestion-hotkey {
 /* Make legible background for menus since we overrode the background */
 div.popover.hover-popover,
 .menu,
-.suggestion-container {
+.suggestion-container,
+.tooltip {
   background-color: #ffffff01;
-  backdrop-filter: blur(30px);
-  border: none;
+  backdrop-filter: blur(30px) brightness(105%);
+  border-radius: 15px;
+}
+.tooltip {
+  color: var(--text-normal);
+  border-radius: 5px;
 }
 
+li.is-collapsed::after, .markdown-preview-section.is-collapsed::after {
+
+  content: "...";
+
+  align-self: baseline;
+
+  color: var(--blue);
+
+  position: relative;
+  right: 0px;
+}
 /* remove borders from frames */
 div.status-bar,
 .workspace-ribbon,
@@ -163,9 +177,14 @@ div.status-bar,
 div.workspace-leaf.mod-active .view-header-title {
   font-style: normal;
 }
-
+.workspace-leaf.mod-active .view-header-title-container:after {
+  background: transparent;
+}
 div.workspace-leaf.mod-active {
   box-shadow: 0 0px 10vw var(--background-dark-translucent);
+}
+.workspace-leaf.mod-active .view-header {
+  background-color: transparent;
 }
 /* File menu should be consistent with the rest of the app*/
 .nav-file-title,
@@ -213,24 +232,23 @@ h6 {
   font-weight: 300;
 }
 
-.markdown-preview-view h1,.cm-header.cm-header-1 {
+/* .markdown-preview-view h1,.cm-header.cm-header-1 {
   font-size: 2.5em;
 }
 
-.markdown-preview-view h2, cm-header.cm-header-2 {
-  font-size: 2.1em;
+.markdown-preview-view h2, .cm-header.cm-header-2 {
+  font-size: 1.9em;
 }
 
-.markdown-preview-view h3, cm-header.cm-header-3 {
+.markdown-preview-view h3, .cm-header.cm-header-3 {
   font-size: 1.7em;
 }
 
-.markdown-preview-view h4, cm-header.cm-header-4 {
+.markdown-preview-view h4, .cm-header.cm-header-4 {
   font-size: 1.3em;
-}
+} */
 
-.cm-s-obsidian .cm-header,
-.cm-s-obsidian {
+.cm-s-obsidian .cm-header {
   font-weight: 300;
 }
 
@@ -267,7 +285,7 @@ strong,  .cm-s-obsidian span.cm-strong {
 /*  Checkboxes  */
 
 input[type="checkbox"] {
-  font-family: "Material Icons";
+  font-family: "Material Icons Round";
   font-weight: normal;
   font-style: normal;
   font-size: 1.2em;
@@ -305,8 +323,15 @@ input[type="checkbox"]::before {
 }
 .markdown-preview-view ul > li.task-list-item.is-checked {
     text-decoration: initial;
+    color: var(--text-muted);
 }
 
+.markdown-preview-section ul {
+  padding-left: 30px;
+}
+ul ul, ol ul {
+  list-style-type: circle;
+}
 
 /* Change the expand and collapse icons in the backlinks menu to be thinner
     and adjust the display properties to shift things in response
@@ -323,7 +348,7 @@ input[type="checkbox"]::before {
 .search-result-collapse-indicator.collapse-icon {
   display: contents;
   visibility: hidden;
-  position: static;
+
   width: 25px;
   margin: 0;
   padding: 0;
@@ -332,9 +357,13 @@ input[type="checkbox"]::before {
 .side-dock-collapsible-section-header.pane-list-item.is-collapsed > .side-dock-collapsible-section-header-indicator.collapse-icon::before,
 .search-result.is-collapsed .search-result-collapse-indicator.collapse-icon::before {
   visibility: visible;
+  position: absolute;
+  top: 0;
+  left: 0;
+
   content: "\e5cc";
 
-  font-family: "Material Icons";
+  font-family: "Material Icons Round";
   font-weight: normal;
   font-style: normal;
   font-size: 1.5em;
@@ -349,8 +378,12 @@ input[type="checkbox"]::before {
 .side-dock-collapsible-section-header:not(.is-collapsed) > .side-dock-collapsible-section-header-indicator.collapse-icon::before,
 .search-result .search-result-collapse-indicator.collapse-icon::before {
   visibility: visible;
+  position: absolute;
+  top: 0;
+  left: 0;
+
   content: "\e5cf";
-  font-family: "Material Icons";
+  font-family: "Material Icons Round";
   font-weight: normal;
   font-style: normal;
   font-size: 1.5em;
@@ -370,13 +403,97 @@ input[type="checkbox"]::before {
 }
 .view-header-icon::before {
   visibility: visible;
+  position: absolute;
+
   content: "\e3ea"; /* grip */
 
-  font-family: "Material Icons";
+  font-family: "Material Icons Outlined";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 1.2em;
+}
+
+/* Pinned */
+.view-action.mod-pin-leaf {
+  visibility: hidden;
+}
+.view-action.mod-pin-leaf::before  {
+  visibility: visible;
+  position: absolute;
+
+  font-family: "Material Icons Outlined";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 1.2em;
+
+  content: "\f10d"
+}
+
+/* Close button */
+.view-action.mod-close-leaf {
+  visibility: hidden;
+}
+.view-action.mod-close-leaf::before  {
+  visibility: visible;
+  position: absolute;
+
+  font-family: "Material Icons Outlined";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 1.2em;
+
+  content: "\e5cd"
+}
+
+/* Preview */
+.view-action:nth-child(1) {
+  visibility: hidden;
+}
+.view-action:nth-child(1)::before  {
+  visibility: visible;
+  position: absolute;
+
+  font-family: "Material Icons Outlined";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 1.2em;
+
+  content: "\f1c5"
+}
+
+/* Edit */
+.view-action:nth-child(2) {
+  visibility: hidden;
+}
+.view-action:nth-child(2)::before  {
+  visibility: visible;
+  position: absolute;
+
+  font-family: "Material Icons Outlined";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 1.2em;
+
+  content: "\e3c9"
+}
+
+/* More */
+.view-action:last-child {
+  visibility: hidden;
+}
+.view-action:last-child:before  {
+  visibility: visible;
+  position: absolute;
+
+  font-family: "Material Icons Outlined";
   font-weight: normal;
   font-style: normal;
   font-size: 1.5em;
+
+  content: "\e5d4"
 }
+
+
 
 /* INTERACTION */
 
@@ -395,7 +512,7 @@ input[type="checkbox"]::before {
 
 /* Menus appear the same  */
 .suggestion-item.is-selected,
-.menu-item-title:hover,
+.menu-item:hover,
 .nav-file-title-content:hover,
 nav-folder-title-content:hover {
   /* border-bottom: 2px solid var(--text-muted); */
@@ -407,11 +524,11 @@ nav-folder-title-content:hover {
 }
 
 .suggestion-item.is-selected::before,
-.menu-item-title:hover::before,
+.menu-item:hover::before,
 .nav-file-title-content:hover::before,
 nav-folder-title-content:hover::before{
   color: var(--blue);
-  font-family: Material Icons;
+  font-family: "Material Icons Round";
   content: "\e5cc";
   position: absolute;
   left: -0.15em;
@@ -1830,15 +1947,35 @@ nav-folder-title-content:hover::before{
 }
 
 @font-face {
-  font-family: "Material Icons";
+  font-family: 'Material Icons Round';
   font-style: normal;
   font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/materialicons/v67/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2)
-    format("woff2");
+  src: url(https://fonts.gstatic.com/s/materialiconsround/v26/LDItaoyNOAY6Uewc665JcIzCKsKc_M9flwmP.woff2) format('woff2');
 }
 
-.material-icons {
-  font-family: "Material Icons";
+.material-icons-round {
+  font-family: 'Material Icons Round';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+}
+@font-face {
+  font-family: 'Material Icons Outlined';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/materialiconsoutlined/v27/gok-H7zzDkdnRel8-DQ6KAXJ69wP1tGnf4ZGhUce.woff2) format('woff2');
+}
+
+.material-icons-outlined {
+  font-family: 'Material Icons Outlined';
   font-weight: normal;
   font-style: normal;
   font-size: 24px;
