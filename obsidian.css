@@ -26,7 +26,6 @@
 
 .theme-light {
   /* our ow variables */
-  /* --blue: #50899e; */
   --blue: #69899b;
   --blue-dark: #424f58;
   --blue-light: #bbcdd9;
@@ -37,9 +36,9 @@
 
   --line-color: #372342;
   --background-light: #facdc3;
-  --background-dark: #d8ada6;
+  --background-dark: #d1a29b;
   --background-light-translucent: #facdc350;
-  --background-dark-translucent: #d8ada650;
+  --background-dark-translucent: #d1a29b50;
   --text-header-color: #372342;
   /* Obsidian Jazz */
 
@@ -84,6 +83,65 @@
   /* text-shadow: 0px 0px 24px var(--text-faint); */
 
 }
+
+.theme-dark {
+  /* our ow variables */
+  --blue: #b1d4eb;
+  --blue-dark: rgb(53, 60, 83);
+  --blue-light: #b1d4eb;
+  --green: #6f9966;
+  --green-light: #95b7b1;
+  --red: #cc8983;
+  --pink: #9dbe94;
+
+  --line-color: #d2cdd9;
+  --background-light: #4c687d;
+  --background-dark: #395167;
+  --background-light-translucent: #4c687d50;
+  --background-dark-translucent: #39516750;
+  --text-header-color: #372342;
+  /* Obsidian Jazz */
+
+  --background-primary: transparent;
+  --background-primary-alt: var(--background-dark-translucent);
+  --background-secondary: var(--background-primary);
+  --background-secondary-alt: var(--background-primary);
+  --background-accent: rgba(0, 0, 0, 0.08);
+  --background-modifier-border: var(--text-faint);
+  --background-modifier-form-field: var(--background-primary);
+  --background-modifier-form-field-highlighted: var(--background-primary);
+  --background-modifier-box-shadow: rgba(0, 0, 0, 0.3);
+  --background-modifier-success: rgba(115, 124, 107, 0.09);
+  --background-modifier-error: #be4653;
+  --background-modifier-error-rgb: 61, 0, 0;
+  --background-modifier-error-hover: #740611;
+  --background-modifier-cover: rgba(0, 0, 0, 0.6);
+
+  --text-accent: #cc8983;
+  --text-accent-hover: var(--blue);
+  --text-normal: #d2cdd9;
+  --text-muted: #d6cdd980;
+  --text-faint: #d4cdd940;
+  --text-error: #800000;
+  --text-error-hover: #990000;
+  --text-highlight-bg: var(--green);
+  --text-search-highlight-bg: var(--blue);
+  --text-selection: var(--text-accent);
+
+  --interactive-normal: var(--background-primary);
+  --interactive-hover: rgba(0, 0, 0, 0.42);
+
+  --interactive-accent: var(--red);
+  --interactive-accent-rgb: 190, 70, 83;
+  --interactive-accent-hover: var(--blue);
+  --text-on-accent: var(--background-light);
+
+  --scrollbar-active-thumb-bg: rgba(0, 0, 0, 0.1);
+  --scrollbar-bg: rgba(0, 0, 0, 0);
+  --scrollbar-thumb-bg: rgba(0, 0, 0, 0.08);
+
+}
+
 /* overall app background should appear translucent */
 html,
 body,
