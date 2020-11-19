@@ -32,18 +32,21 @@
   --green: #638584;
   --green-light: #95b7b1;
   --red: #be4653;
+  --red-text: #B70040;
   --pink: #d371d6;
 
   --line-color: #372342;
   --background-light: #facdc3;
   --background-dark: #d1a29b;
-  --background-light-translucent: #facdc350;
-  --background-dark-translucent: #d1a29b50;
+  --background-light-half: #facdc350;
+  --background-dark-half: #d1a29b50;
+  --background-light-99: #facdc399;
+  --background-dark-99: #d1a29b99;
   --text-header-color: #372342;
   /* Obsidian Jazz */
 
   --background-primary: transparent;
-  --background-primary-alt: var(--background-dark-translucent);
+  --background-primary-alt: var(--background-dark-half);
   --background-secondary: var(--background-primary);
   --background-secondary-alt: var(--background-primary);
   --background-accent: rgba(0, 0, 0, 0.08);
@@ -61,11 +64,11 @@
   --text-accent-hover: var(--blue);
   --text-normal: #3b3252;
   --text-muted: rgba(38, 38, 59, 0.5);
-  --text-muted: rgba(38, 38, 59, 0.5);
   --text-faint: rgba(38, 38, 59, 0.2);
   --text-error: #800000;
   --text-error-hover: #990000;
-  --text-highlight-bg: var(--green-light);
+  --text-highlight-bg: var(--green);
+
   --text-search-highlight-bg: rgba(150, 150, 242, 0.5);
   --text-selection: #fd9797;
 
@@ -89,21 +92,24 @@
   --blue: #b1d4eb;
   --blue-dark: rgb(53, 60, 83);
   --blue-light: #b1d4eb;
-  --green: #6f9966;
-  --green-light: #95b7b1;
+  --green: #C5E3BF;
+  --green-light: #B0F3A3;
   --red: #cc8983;
+  --red-text: #df978b;
   --pink: #9dbe94;
 
-  --line-color: #d2cdd9;
-  --background-light: #4c687d;
-  --background-dark: #395167;
-  --background-light-translucent: #4c687d50;
-  --background-dark-translucent: #39516750;
+  --line-color: #DDCACC;
+  --background-light: #36596E;
+  --background-dark: #2A3C50;
+  --background-light-99: #36596E99;
+  --background-dark-99: #2A3C5099;
+  --background-light-half: #36596E50;
+  --background-dark-half: #2A3C5050;
   --text-header-color: #372342;
   /* Obsidian Jazz */
 
   --background-primary: transparent;
-  --background-primary-alt: var(--background-dark-translucent);
+  --background-primary-alt: var(--background-dark-half);
   --background-secondary: var(--background-primary);
   --background-secondary-alt: var(--background-primary);
   --background-accent: rgba(0, 0, 0, 0.08);
@@ -117,22 +123,22 @@
   --background-modifier-error-hover: #740611;
   --background-modifier-cover: rgba(0, 0, 0, 0.6);
 
-  --text-accent: #cc8983;
+  --text-accent: var(--red-text);
   --text-accent-hover: var(--blue);
-  --text-normal: #d2cdd9;
-  --text-muted: #d6cdd980;
-  --text-faint: #d4cdd940;
+  --text-normal: #DDCACC;
+  --text-muted: #FFE0F290;
+  --text-faint: #FFE0F250;
   --text-error: #800000;
   --text-error-hover: #990000;
-  --text-highlight-bg: var(--green);
+  --text-highlight-bg: var(--blue-dark);
   --text-search-highlight-bg: var(--blue);
-  --text-selection: var(--text-accent);
+  --text-selection: var(--blue-dark);
 
   --interactive-normal: var(--background-primary);
   --interactive-hover: rgba(0, 0, 0, 0.42);
 
   --interactive-accent: var(--red);
-  --interactive-accent-rgb: 190, 70, 83;
+  --interactive-accent-rgb: 204, 137, 131;
   --interactive-accent-hover: var(--blue);
   --text-on-accent: var(--background-light);
 
@@ -154,6 +160,7 @@ body,
     )
     no-repeat center center fixed;
   font-weight: 400;
+  text-shadow: 0 0 1.5px var(--text-faint);
 }
 
 .titlebar, .titlebar-inner {
@@ -194,7 +201,7 @@ kbd.suggestion-hotkey {
 
 .modal-bg {
   background-color: #ffffff01;
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(30px);
 }
 
 /* Make legible background for menus since we overrode the background */
@@ -202,8 +209,9 @@ div.popover.hover-popover,
 .menu,
 .suggestion-container,
 .tooltip {
-  background-color: #ffffff01;
-  backdrop-filter: blur(30px) brightness(105%);
+  background-color: var(--background-dark-99);
+  backdrop-filter: blur(15px);
+
   border-radius: 15px;
 }
 .tooltip {
@@ -237,7 +245,7 @@ div.workspace-leaf.mod-active .view-header-title {
   background: transparent;
 }
 div.workspace-leaf.mod-active {
-  box-shadow: 0 0px 10vw var(--background-dark-translucent);
+  box-shadow: 0 0px 10vw var(--background-dark-half);
 }
 .workspace-leaf.mod-active .view-header {
   background-color: transparent;
@@ -267,6 +275,12 @@ div.workspace-leaf.mod-active {
   content: " ↗ ";
 }
 
+/* make unresolved links mmore legible */
+.markdown-preview-view .internal-link.is-unresolved {
+  opacity: .9;
+  filter: grayscale(0.5);
+}
+
 /* Code blocks */
 code[class*="language-"],
 .theme-light pre[class*="language-"],
@@ -276,6 +290,11 @@ code[class*="language-"],
 .theme-light code[class*="language-"],
 .theme-light pre[class*="language-"] {
   text-shadow: none;
+}
+
+.markdown-preview-view mark {
+  background-color: var(--green);
+  color: var(--background-dark);
 }
 
 /* Typography */
@@ -321,7 +340,7 @@ h6 {
 }
 .empty-state-action {
   font-style: italic;
-  color: var(--red);
+  color: var(--text-accent);
 }
 
 .side-dock-collapsible-section-header.pane-list-item {
@@ -336,6 +355,7 @@ h6 {
 
 strong, .cm-s-obsidian span.cm-strong {
     font-weight: 500;
+    text-shadow: 0 0px 5px var(--text-muted);
 }
 
 .markdown-embed-title, .file-embed-title {
@@ -428,9 +448,9 @@ ul ul, ol ul {
 /* Blockquotes */
 .markdown-preview-view blockquote {
   font-family: Roboto Slab;
-  background: var(--background-dark-translucent);
+  background: var(--background-dark-half);
   border: none;
-  box-shadow: 0 0 5px var(--background-dark-translucent);
+  box-shadow: 0 0 5px var(--background-dark-half);
 }
 
 blockquote::before {
@@ -672,7 +692,7 @@ nav-folder-title-content:hover {
   /* box-sizing: border-box; */
   /* border-collapse: collapse; */
   /* padding-bottom: 3px; */
-  background-color: transparent;
+  background-color: var(--background-dark-half);
   color: var(--blue);
   padding-left: -15px;
 }
@@ -700,7 +720,7 @@ nav-folder-title-content:hover::before{
 
 /* TABLES */
 .markdown-preview-view th {
-    background-color: var(--background-dark-translucent);
+    background-color: var(--background-dark-half);
     border: 0;
     text-align: left;
     font-weight: 500;
@@ -712,13 +732,40 @@ nav-folder-title-content:hover::before{
 }
 
 .markdown-preview-view tr:hover {
-  background-color: var(--background-light-translucent);
+  background-color: var(--background-light-half);
 }
 .markdown-preview-view table {
-  border-bottom: 3px solid var(--background-dark-translucent);
+  border-bottom: 3px solid var(--background-dark-half);
 }
 
+/* Day Planner Customization */
+.day-planner-status-card {
+  background-color: #ffffff01;
+  backdrop-filter: blur(30px) brightness(105%);
+  border-radius: 15px;
+}
+.event_item_contents {
+  color: green;
+}
 
+/* ## Plugin Support  */
+/* ### Andy Mode */
+body.plugin-sliding-panes-stacking .workspace > .mod-root > .workspace-leaf {
+  backdrop-filter: blur(85px);
+  box-shadow: 0px 0px 20px 5px var(--background-light-half)
+}
+body.plugin-sliding-panes {
+  --header-width: 3em;
+}
+body.plugin-sliding-panes .mod-am-right-of-active, .mod-am-left-of-active {
+
+  background: radial-gradient(
+    ellipse at top,
+    var(--background-light),
+    var(--background-dark)
+  )
+  no-repeat center center fixed;
+}
 /* Font spam */
 
 /* cyrillic-ext */
