@@ -29,7 +29,7 @@
   --blue: #69899b;
   --blue-dark: #424f58;
   --blue-light: #bbcdd9;
-  --green: #638584;
+  --green: #567680;
   --green-light: #95b7b1;
   --red: #be4653;
   --red-text: #B70040;
@@ -60,11 +60,11 @@
   --background-modifier-error-hover: #740611;
   --background-modifier-cover: rgba(0, 0, 0, 0.6);
 
-  --text-accent: #a83c3c;
+  --text-accent: #9B3A45;
   --text-accent-hover: var(--blue);
   --text-normal: #3b3252;
-  --text-muted: rgba(38, 38, 59, 0.5);
-  --text-faint: rgba(38, 38, 59, 0.2);
+  --text-muted: #6F5A82;
+  --text-faint: #4F517850;
   --text-error: #800000;
   --text-error-hover: #990000;
   --text-highlight-bg: var(--green);
@@ -90,13 +90,14 @@
 .theme-dark {
   /* our ow variables */
   --blue: #b1d4eb;
-  --blue-dark: rgb(53, 60, 83);
+  --blue-dark: #7f6d8f;
   --blue-light: #b1d4eb;
   --green: #C5E3BF;
   --green-light: #B0F3A3;
   --red: #cc8983;
   --red-text: #df978b;
   --pink: #9dbe94;
+
 
   --line-color: #DDCACC;
   --background-light: #36596E;
@@ -119,16 +120,16 @@
   --background-modifier-box-shadow: rgba(0, 0, 0, 0.3);
   --background-modifier-success: rgba(115, 124, 107, 0.09);
   --background-modifier-error: #be4653;
-  --background-modifier-error-rgb: 61, 0, 0;
+  --background-modifier-error-rgb: 179, 93, 102;
   --background-modifier-error-hover: #740611;
   --background-modifier-cover: rgba(0, 0, 0, 0.6);
 
   --text-accent: var(--red-text);
   --text-accent-hover: var(--blue);
-  --text-normal: #DDCACC;
+  --text-normal: #ddd0d1;
   --text-muted: #FFE0F290;
   --text-faint: #FFE0F250;
-  --text-error: #800000;
+  --text-error: #b35d66;
   --text-error-hover: #990000;
   --text-highlight-bg: var(--blue-dark);
   --text-search-highlight-bg: var(--blue);
@@ -180,7 +181,8 @@ input.prompt-input:focus {
   border-collapse: collapse;
 }
 
-input.prompt-input::placeholder {
+
+input::placeholder {
   color: var(--text-muted);
   font-style: italic;
 }
@@ -209,7 +211,7 @@ div.popover.hover-popover,
 .menu,
 .suggestion-container,
 .tooltip {
-  background-color: var(--background-dark-99);
+  background-color: var(--background-light-99);
   backdrop-filter: blur(15px);
 
   border-radius: 15px;
@@ -282,11 +284,18 @@ div.workspace-leaf.mod-active {
 }
 
 /* Code blocks */
+.cm-s-obsidian pre.HyperMD-codeblock {
+  color: var(--green)
+}
 code[class*="language-"],
-.theme-light pre[class*="language-"],
+.theme-light pre[class*="language-"] {
+  background: var(--background-dark-half);
+}
+.markdown-preview-section pre code,
 .theme-light .token.operator {
   background: transparent;
 }
+
 .theme-light code[class*="language-"],
 .theme-light pre[class*="language-"] {
   text-shadow: none;
@@ -295,6 +304,10 @@ code[class*="language-"],
 .markdown-preview-view mark {
   background-color: var(--green);
   color: var(--background-dark);
+}
+
+.theme-dark .token.comment, .theme-dark .token.prolog, .theme-dark .token.doctype, .theme-dark .token.cdata {
+  color: var(--text-muted);
 }
 
 /* Typography */
@@ -681,6 +694,7 @@ blockquote {
 .markdown-preview-view code,
 .cm-s-obsidian span.cm-inline-code {
   color: var(--green);
+  text-shadow: 0px 1px var(--background-dark);
 }
 
 /* Menus appear the same  */
